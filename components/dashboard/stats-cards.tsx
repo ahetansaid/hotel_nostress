@@ -8,7 +8,7 @@ import {
   Bed, 
   Users, 
   TrendingUp, 
-  Euro,
+  DollarSign,
   Calendar,
   Clock,
   AlertCircle,
@@ -55,8 +55,8 @@ export function StatsCards() {
     {
       title: 'Revenus totaux',
       value: formatCurrency(stats.totalRevenue),
-      description: 'Revenus confirmés ce mois',
-      icon: Euro,
+      description: 'Revenus confirmés ce mois (FCFA)',
+      icon: DollarSign,
       color: 'text-green-600',
       bgColor: 'bg-gradient-to-br from-green-50 to-green-100',
       trend: '+12.8%',
@@ -67,7 +67,7 @@ export function StatsCards() {
     {
       title: 'Prix moyen par chambre',
       value: formatCurrency(stats.averageDailyRate),
-      description: 'Prix moyen quotidien',
+      description: 'Prix moyen quotidien (FCFA)',
       icon: TrendingUp,
       color: 'text-purple-600',
       bgColor: 'bg-gradient-to-br from-purple-50 to-purple-100',

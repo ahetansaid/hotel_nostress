@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useHotelStore } from '@/lib/store';
-import { Plus, Download, Eye, Send, Euro, Calendar, User } from 'lucide-react';
+import { Plus, Download, Eye, Send, Euro, Calendar, User, Filter } from 'lucide-react';
 import { formatDate, formatCurrency } from '@/lib/utils';
 
 export default function BillingPage() {
@@ -64,22 +64,31 @@ export default function BillingPage() {
       <Header 
         title="Facturation" 
         subtitle={`${invoices.length} factures au total`}
+        showBackButton={true}
       />
       
       <div className="p-6 space-y-6">
         {/* Actions Bar */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex gap-2">
-            <Button>
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
               <Plus className="h-4 w-4 mr-2" />
               Nouvelle facture
+            </Button>
+            <Button variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              Exporter
             </Button>
           </div>
           
           <div className="flex gap-2">
             <Button variant="outline">
-              <Download className="h-4 w-4 mr-2" />
-              Exporter
+              <Filter className="h-4 w-4 mr-2" />
+              Filtres
+            </Button>
+            <Button variant="outline">
+              <Calendar className="h-4 w-4 mr-2" />
+              Période
             </Button>
           </div>
         </div>

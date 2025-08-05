@@ -1,6 +1,6 @@
 'use client';
 
-import { Bell, Search, Menu, User, Settings, LogOut, Hotel } from 'lucide-react';
+import { Bell, Search, Menu, User, Settings, LogOut, Hotel, ArrowLeft, Home, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -17,15 +17,31 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 interface HeaderProps {
   title: string;
   subtitle?: string;
+  showBackButton?: boolean;
+  backUrl?: string;
 }
 
-export function Header({ title, subtitle }: HeaderProps) {
+export function Header({ title, subtitle, showBackButton = false, backUrl = '/dashboard' }: HeaderProps) {
   return (
     <header className="h-16 bg-white/80 backdrop-blur-sm border-b border-gray-200/50 flex items-center justify-between px-6 sticky top-0 z-50">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="sm" className="md:hidden hover:bg-gray-100">
           <Menu className="h-5 w-5" />
         </Button>
+        
+        {/* Back Button */}
+        {showBackButton && (
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="hover:bg-gray-100 transition-colors"
+            onClick={() => window.location.href = backUrl}
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Retour
+          </Button>
+        )}
+        
         <div className="flex items-center gap-3">
           <div className="hidden md:flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-600">
             <Hotel className="h-4 w-4 text-white" />
@@ -81,6 +97,14 @@ export function Header({ title, subtitle }: HeaderProps) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/dashboard'}>
+              <Home className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/front-office'}>
+              <Globe className="mr-2 h-4 w-4" />
+              <span>Site Public</span>
+            </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer">
               <User className="mr-2 h-4 w-4" />
               <span>Profil</span>
@@ -90,7 +114,12 @@ export function Header({ title, subtitle }: HeaderProps) {
               <span>Paramètres</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600">
+            <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600" onClick={() => {
+              // Optionnel : Ajouter une confirmation
+              if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                window.location.href = '/front-office';
+              }
+            }}>
               <LogOut className="mr-2 h-4 w-4" />
               <span>Déconnexion</span>
             </DropdownMenuItem>

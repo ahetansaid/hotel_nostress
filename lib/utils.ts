@@ -15,13 +15,13 @@ export function formatDate(date: Date | string, formatStr: string = 'dd/MM/yyyy'
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat('fr-FR', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'XOF',
   }).format(amount);
 }
 
 export function formatPhone(phone: string): string {
-  // Format French phone numbers
-  return phone.replace(/(\+33\s?)(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1$2 $3 $4 $5 $6');
+  // Format Beninese phone numbers
+  return phone.replace(/(\+229\s?)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1$2 $3 $4 $5');
 }
 
 export function generateId(): string {

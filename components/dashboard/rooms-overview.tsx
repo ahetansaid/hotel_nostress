@@ -149,7 +149,7 @@ export function RoomsOverview() {
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900">
-            Chambres ({filteredRooms.length})
+            Chambres de l'Hôtel No-Stress ({filteredRooms.length})
           </h3>
           <div className="text-sm text-gray-500">
             {filteredRooms.length === rooms.length ? 'Toutes les chambres' : 'Résultats filtrés'}

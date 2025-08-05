@@ -51,6 +51,7 @@ export default function GuestsPage() {
       <Header 
         title="Gestion des clients" 
         subtitle={`${guests.length} clients enregistrés`}
+        showBackButton={true}
       />
       
       <div className="p-6 space-y-6">

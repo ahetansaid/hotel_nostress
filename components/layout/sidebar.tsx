@@ -18,6 +18,7 @@ import {
   Hotel,
   TrendingUp,
   Shield,
+  Globe,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -35,8 +36,9 @@ const navigation = [
 const secondaryNavigation = [
   { name: 'Notifications', href: '/notifications', icon: Bell, badge: '3' },
   { name: 'Documents', href: '/documents', icon: FileText, badge: null },
-  { name: 'Paiements', href: '/payments', icon: CreditCard, badge: '2' },
-  { name: 'Paramètres', href: '/settings', icon: Settings, badge: null },
+  { name: 'Paiements', href: '/paiement', icon: CreditCard, badge: '2' },
+  { name: 'Paramètres', href: '/parametres', icon: Settings, badge: null },
+  { name: 'Site Public', href: '/front-office', icon: Globe, badge: null },
 ];
 
 export function Sidebar() {
@@ -183,6 +185,12 @@ export function Sidebar() {
           variant="ghost" 
           size="sm" 
           className="w-full justify-start hover:bg-red-50 hover:text-red-600 transition-colors"
+          onClick={() => {
+            // Optionnel : Ajouter une confirmation
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+              window.location.href = '/front-office';
+            }
+          }}
         >
           <LogOut className="h-4 w-4 mr-2" />
           Déconnexion

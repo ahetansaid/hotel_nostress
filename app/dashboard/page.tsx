@@ -17,8 +17,8 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <Header 
-        title="Tableau de bord" 
-        subtitle="Vue d'ensemble de l'activité hôtelière" 
+        title="Tableau de bord - Hôtel No-Stress" 
+        subtitle="Gestion hôtelière au cœur de Cotonou, Bénin" 
       />
       
       <div className="p-6 space-y-8">

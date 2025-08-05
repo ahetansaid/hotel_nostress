@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Room, Guest, Reservation, Invoice, HotelStats } from './types';
-import { mockRooms, mockGuests, mockReservations, mockInvoices } from './mock-data';
+import { rooms, guests, reservations, payments as invoices, dashboardStats } from './mock-data';
 
 interface HotelStore {
   // Data
@@ -167,10 +167,10 @@ export const useHotelStore = create<HotelStore>((set, get) => ({
   
   initializeData: () => {
     set({
-      rooms: mockRooms,
-      guests: mockGuests,
-      reservations: mockReservations,
-      invoices: mockInvoices,
+      rooms: rooms,
+      guests: guests,
+      reservations: reservations,
+      invoices: invoices,
     });
     get().calculateStats();
   },

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/layout/header';
+import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { QuickNav } from '@/components/layout/quick-nav';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -42,9 +44,17 @@ export default function RoomsPage() {
       <Header 
         title="Gestion des chambres" 
         subtitle={`${rooms.length} chambres au total`}
+        showBackButton={true}
       />
       
       <div className="p-6 space-y-6">
+        {/* Breadcrumb */}
+        <Breadcrumb 
+          items={[
+            { label: 'Gestion des chambres' }
+          ]} 
+        />
+        
         {/* Actions Bar */}
         <div className="flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex gap-2">
@@ -169,6 +179,9 @@ export default function RoomsPage() {
             </TabsContent>
           ))}
         </Tabs>
+        
+        {/* Quick Navigation */}
+        <QuickNav currentPage="/rooms" />
       </div>
     </div>
   );

@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/layout/header';
+import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { QuickNav } from '@/components/layout/quick-nav';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useHotelStore } from '@/lib/store';
-import { Plus, Calendar, Clock, User, Phone, Mail } from 'lucide-react';
+import { Plus, Calendar, Clock, User, Phone, Mail, Download, Filter } from 'lucide-react';
 import { formatDate, formatCurrency, getReservationStatusColor, getReservationStatusText, getPaymentStatusColor, getPaymentStatusText } from '@/lib/utils';
 
 export default function ReservationsPage() {
@@ -35,29 +37,48 @@ export default function ReservationsPage() {
       <Header 
         title="Réservations" 
         subtitle={`${reservations.length} réservations au total`}
+        showBackButton={true}
       />
       
       <div className="p-6 space-y-6">
+        {/* Breadcrumb */}
+        <Breadcrumb 
+          items={[
+            { label: 'Réservations' }
+          ]} 
+        />
+        
         {/* Actions Bar */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex gap-2">
-            <Button>
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
               <Plus className="h-4 w-4 mr-2" />
               Nouvelle réservation
+            </Button>
+            <Button variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              Exporter
             </Button>
           </div>
           
           <div className="flex gap-2">
-            <Button variant="outline">Filtrer</Button>
-            <Button variant="outline">Exporter</Button>
+            <Button variant="outline">
+              <Filter className="h-4 w-4 mr-2" />
+              Filtres avancés
+            </Button>
+            <Button variant="outline">
+              <Calendar className="h-4 w-4 mr-2" />
+              Vue calendrier
+            </Button>
           </div>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <div className="h-2 w-2 bg-green-500 rounded-full"></div>
                 Confirmées
               </CardTitle>
             </CardHeader>
@@ -65,12 +86,14 @@ export default function ReservationsPage() {
               <div className="text-2xl font-bold text-green-600">
                 {reservations.filter(r => r.status === 'confirmed').length}
               </div>
+              <p className="text-xs text-gray-500">Réservations validées</p>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <div className="h-2 w-2 bg-yellow-500 rounded-full"></div>
                 En attente
               </CardTitle>
             </CardHeader>
@@ -78,12 +101,14 @@ export default function ReservationsPage() {
               <div className="text-2xl font-bold text-yellow-600">
                 {reservations.filter(r => r.status === 'pending').length}
               </div>
+              <p className="text-xs text-gray-500">En attente de confirmation</p>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
                 Terminées
               </CardTitle>
             </CardHeader>
@@ -91,12 +116,14 @@ export default function ReservationsPage() {
               <div className="text-2xl font-bold text-blue-600">
                 {reservations.filter(r => r.status === 'completed').length}
               </div>
+              <p className="text-xs text-gray-500">Séjours terminés</p>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <div className="h-2 w-2 bg-red-500 rounded-full"></div>
                 Annulées
               </CardTitle>
             </CardHeader>
@@ -104,6 +131,7 @@ export default function ReservationsPage() {
               <div className="text-2xl font-bold text-red-600">
                 {reservations.filter(r => r.status === 'cancelled').length}
               </div>
+              <p className="text-xs text-gray-500">Réservations annulées</p>
             </CardContent>
           </Card>
         </div>
@@ -197,6 +225,9 @@ export default function ReservationsPage() {
             })}
           </div>
         </div>
+        
+        {/* Quick Navigation */}
+        <QuickNav currentPage="/reservations" />
       </div>
     </div>
   );

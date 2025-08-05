@@ -67,6 +67,7 @@ export default function ReportsPage() {
       <Header 
         title="Rapports et statistiques" 
         subtitle="Analyses détaillées de performance"
+        showBackButton={true}
       />
       
       <div className="p-6 space-y-8">
