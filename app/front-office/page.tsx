@@ -4,6 +4,7 @@ import { FrontOfficeNav } from '@/components/layout/front-office-nav';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 import { 
   Star, 
   MapPin, 
@@ -33,7 +34,7 @@ export default function FrontOfficePage() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/80 z-10"></div>
-        <div className="absolute inset-0 bg-[url('/images/benin-hotel.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/images/room-modern.jpg.jpg')] bg-cover bg-center"></div>
         
         <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
           <Badge className="mb-4 bg-orange-500 hover:bg-orange-600 text-white border-0">
@@ -126,6 +127,43 @@ export default function FrontOfficePage() {
                 <p className="text-gray-600">Piscine extérieure avec vue sur la lagune</p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Galerie Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Galerie</h2>
+            <p className="text-xl text-gray-600">Un aperçu de nos chambres et espaces</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Ensure these images exist in public/images */}
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/room-closeup.jpg.jpg" alt="Détail lit" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/room-modern.jpg.jpg" alt="Chambre moderne" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/room-canopy.jpg.jpg" alt="Suite avec baldaquin" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/reception.jpg.jpg" alt="Réception" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/pool-terrace-1.jpg.jpg" alt="Terrasse piscine" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/pool-terrace-2.jpg.jpg" alt="Solarium" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden sm:col-span-2">
+              <Image src="/images/pool-sunset.jpg.jpg" alt="Piscine au coucher du soleil" fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-64 rounded-xl overflow-hidden">
+              <Image src="/images/room-bright.jpg.jpg" alt="Chambre lumineuse" fill className="object-cover" />
+            </div>
           </div>
         </div>
       </section>
