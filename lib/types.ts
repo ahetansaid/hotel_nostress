@@ -1,12 +1,12 @@
 export interface Room {
   id: string;
   number: string;
-  type: 'single' | 'double' | 'suite' | 'deluxe';
-  status: 'available' | 'occupied' | 'cleaning' | 'maintenance';
+  type: 'single' | 'double' | 'suite' | 'deluxe' | 'standard' | 'family' | 'economic' | 'business';
+  status: 'available' | 'occupied' | 'cleaning' | 'maintenance' | 'reserved';
   floor: number;
   price: number;
   amenities: string[];
-  lastCleaned?: Date;
+  lastCleaned?: Date | string;
   currentGuest?: string;
   checkIn?: Date;
   checkOut?: Date;
@@ -30,19 +30,20 @@ export interface Guest {
 
 export interface Reservation {
   id: string;
-  guestId: string;
-  roomId: string;
-  checkIn: Date;
-  checkOut: Date;
-  guests: number;
-  totalAmount: number;
+  guestName: string;
+  guestEmail: string;
+  guestPhone: string;
+  checkIn: string;
+  checkOut: string;
+  roomType: string;
+  numberOfGuests: number;
   status: 'confirmed' | 'pending' | 'cancelled' | 'completed';
+  totalAmount: number;
+  currency: string;
   paymentStatus: 'pending' | 'partial' | 'paid' | 'refunded';
   specialRequests?: string;
-  source: 'direct' | 'online' | 'phone' | 'agency';
-  createdAt: Date;
-  confirmedAt?: Date;
-  cancelledAt?: Date;
+  createdAt: string;
+  source: 'website' | 'phone' | 'walk-in' | 'travel-agency';
 }
 
 export interface Invoice {

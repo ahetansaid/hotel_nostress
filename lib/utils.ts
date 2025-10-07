@@ -8,7 +8,15 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDate(date: Date | string, formatStr: string = 'dd/MM/yyyy'): string {
+  if (!date) return '-';
+  
   const dateObj = typeof date === 'string' ? new Date(date) : date;
+  
+  // Check if the date is valid
+  if (isNaN(dateObj.getTime())) {
+    return '-';
+  }
+  
   return format(dateObj, formatStr, { locale: fr });
 }
 

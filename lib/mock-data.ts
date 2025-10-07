@@ -483,6 +483,126 @@ export const payments: Payment[] = [
   }
 ];
 
+// Données des factures (pour le système de facturation)
+export const invoices = [
+  {
+    id: 'INV001',
+    reservationId: 'RES001',
+    guestId: '1',
+    items: [
+      {
+        id: '1',
+        description: 'Séjour chambre 102',
+        quantity: 5,
+        unitPrice: 25000,
+        total: 125000,
+        category: 'room' as const
+      }
+    ],
+    subtotal: 125000,
+    tax: 0,
+    total: 125000,
+    paidAmount: 125000,
+    status: 'paid' as const,
+    issueDate: new Date('2024-12-10'),
+    dueDate: new Date('2024-12-10'),
+    paidDate: new Date('2024-12-10'),
+    paymentMethod: 'card' as const
+  },
+  {
+    id: 'INV002',
+    reservationId: 'RES002',
+    guestId: '2',
+    items: [
+      {
+        id: '2',
+        description: 'Séjour chambre 202',
+        quantity: 3,
+        unitPrice: 45000,
+        total: 135000,
+        category: 'room' as const
+      }
+    ],
+    subtotal: 135000,
+    tax: 0,
+    total: 135000,
+    paidAmount: 0,
+    status: 'sent' as const,
+    issueDate: new Date('2024-12-11'),
+    dueDate: new Date('2024-12-12')
+  },
+  {
+    id: 'INV003',
+    reservationId: 'RES003',
+    guestId: '3',
+    items: [
+      {
+        id: '3',
+        description: 'Séjour chambre 601',
+        quantity: 4,
+        unitPrice: 35000,
+        total: 140000,
+        category: 'room' as const
+      }
+    ],
+    subtotal: 140000,
+    tax: 0,
+    total: 140000,
+    paidAmount: 140000,
+    status: 'paid' as const,
+    issueDate: new Date('2024-12-12'),
+    dueDate: new Date('2024-12-12'),
+    paidDate: new Date('2024-12-12'),
+    paymentMethod: 'cash' as const
+  },
+  {
+    id: 'INV004',
+    reservationId: 'RES004',
+    guestId: '4',
+    items: [
+      {
+        id: '4',
+        description: 'Séjour Suite 302',
+        quantity: 4,
+        unitPrice: 85000,
+        total: 340000,
+        category: 'room' as const
+      }
+    ],
+    subtotal: 340000,
+    tax: 0,
+    total: 340000,
+    paidAmount: 340000,
+    status: 'paid' as const,
+    issueDate: new Date('2024-12-08'),
+    dueDate: new Date('2024-12-08'),
+    paidDate: new Date('2024-12-08'),
+    paymentMethod: 'card' as const
+  },
+  {
+    id: 'INV005',
+    reservationId: 'RES005',
+    guestId: '5',
+    items: [
+      {
+        id: '5',
+        description: 'Acompte Suite 301',
+        quantity: 1,
+        unitPrice: 212500,
+        total: 212500,
+        category: 'room' as const
+      }
+    ],
+    subtotal: 212500,
+    tax: 0,
+    total: 425000,
+    paidAmount: 212500,
+    status: 'sent' as const,
+    issueDate: new Date('2024-12-15'),
+    dueDate: new Date('2024-12-15')
+  }
+];
+
 // Données des notifications
 export const notifications: Notification[] = [
   {

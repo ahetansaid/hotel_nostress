@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Room, Guest, Reservation, Invoice, HotelStats } from './types';
-import { rooms, guests, reservations, payments as invoices, dashboardStats } from './mock-data';
+import { rooms, guests, reservations, invoices, dashboardStats } from './mock-data';
 
 interface HotelStore {
   // Data

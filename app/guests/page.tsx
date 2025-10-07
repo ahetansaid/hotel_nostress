@@ -94,7 +94,7 @@ export default function GuestsPage() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold">
-                    {guests.filter(g => g.loyaltyTier === 'gold' || g.loyaltyTier === 'platinum').length}
+                    {guests.filter(g => (g as any).loyaltyTier === 'gold' || (g as any).loyaltyTier === 'platinum').length}
                   </div>
                   <div className="text-sm text-gray-600">Clients VIP</div>
                 </div>
@@ -110,7 +110,9 @@ export default function GuestsPage() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold">
-                    {Math.round(guests.reduce((sum, g) => sum + g.totalStays, 0) / guests.length)}
+                    {guests.length > 0 
+                      ? Math.round(guests.reduce((sum, g) => sum + ((g as any).totalStays ?? 0), 0) / guests.length)
+                      : 0}
                   </div>
                   <div className="text-sm text-gray-600">Séjours moyens</div>
                 </div>
@@ -126,7 +128,11 @@ export default function GuestsPage() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold">
-                    {guests.filter(g => new Date(g.createdAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)).length}
+                    {guests.filter(g => {
+                      const createdAt = (g as any).createdAt ? new Date((g as any).createdAt) : null;
+                      if (!createdAt) return false;
+                      return createdAt > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+                    }).length}
                   </div>
                   <div className="text-sm text-gray-600">Nouveaux (30j)</div>
                 </div>
@@ -156,8 +162,8 @@ export default function GuestsPage() {
                       </div>
                     </div>
                     
-                    <Badge className={getLoyaltyColor(guest.loyaltyTier)}>
-                      {getLoyaltyText(guest.loyaltyTier)}
+                    <Badge className={getLoyaltyColor((guest as any).loyaltyTier ?? 'bronze')}>
+                      {getLoyaltyText((guest as any).loyaltyTier ?? 'bronze')}
                     </Badge>
                   </div>
 
@@ -174,24 +180,24 @@ export default function GuestsPage() {
                     
                     <div className="flex items-center gap-2 text-sm">
                       <MapPin className="h-4 w-4 text-gray-400" />
-                      <span className="line-clamp-1">{guest.address}</span>
+                      <span className="line-clamp-1">{(guest as any).address ?? '-'}</span>
                     </div>
                     
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4 text-gray-400" />
-                        <span>Client depuis {formatDate(guest.createdAt)}</span>
+                        <span>Client depuis {(guest as any).createdAt ? formatDate((guest as any).createdAt) : '-'}</span>
                       </div>
                       <span className="font-medium text-primary">
-                        {guest.totalStays} séjour{guest.totalStays > 1 ? 's' : ''}
+                        {((guest as any).totalStays ?? 0)} séjour{((guest as any).totalStays ?? 0) > 1 ? 's' : ''}
                       </span>
                     </div>
 
-                    {guest.preferences && guest.preferences.length > 0 && (
+                    {(guest as any).preferences && (guest as any).preferences.length > 0 && (
                       <div className="pt-2 border-t">
                         <p className="text-xs text-gray-500 mb-1">Préférences:</p>
                         <div className="flex flex-wrap gap-1">
-                          {guest.preferences.map((pref, index) => (
+                          {(guest as any).preferences.map((pref: string, index: number) => (
                             <Badge key={index} variant="outline" className="text-xs">
                               {pref}
                             </Badge>
